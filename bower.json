@@ -1,5 +1,5 @@
 {
-    "name": "slick-carousel",
+    "name": "bd-slick-carousel",
     "main": [
         "slick/slick.js",
         "slick/slick.css",
