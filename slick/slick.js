@@ -6,7 +6,7 @@
 |___/_|_|\___|_|\_(_)/ |___/
                    |__/
 
- Version: 1.8.1
+ Version: 1.8.2
   Author: Ken Wheeler
  Website: http://kenwheeler.github.io
     Docs: http://kenwheeler.github.io/slick
@@ -189,7 +189,8 @@
         var _ = this;
 
         _.$slideTrack.find('.slick-active').attr({
-            'aria-hidden': 'false'
+            'aria-hidden': 'false',
+            'tabindex': '0'
         }).find('a, input, button, select').attr({
             'tabindex': '0'
         });
