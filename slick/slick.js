@@ -52,7 +52,7 @@
                 centerPadding: '50px',
                 cssEase: 'ease',
                 customPaging: function(slider, i) {
-                    return $('<button type="button" data-role="none" role="button" tabindex="0" />').text(i + 1);
+                    return $('<button type="button" data-role="none" role="button" tabindex="0" aria-label="Slide '+(i+1)+'" />').text(i + 1);
                 },
                 dots: false,
                 dotsClass: 'slick-dots',
@@ -1290,12 +1290,12 @@
             _.$dots.attr('role', 'tablist').find('li').each(function(i) {
                 $(this).attr({
                     'role': 'presentation',
-                    'aria-selected': 'false',
+                    // 'aria-selected': 'false',
                     'aria-controls': 'navigation' + _.instanceUid + i + '',
                     'id': 'slick-slide' + _.instanceUid + i + ''
                 });
             })
-                .first().attr('aria-selected', 'true').end()
+                // .first().attr('aria-selected', 'true').end()
                 .find('button').attr('role', 'button').end()
                 .closest('div').attr('role', 'toolbar');
         }
@@ -2841,14 +2841,14 @@
 
             _.$dots
                 .find('li')
-                .removeClass('slick-active')
-                .attr('aria-hidden', 'true');
+                .removeClass('slick-active').attr('aria-selected','false')
+            // .attr('aria-hidden', 'true');
 
             _.$dots
                 .find('li')
                 .eq(Math.floor(_.currentSlide / _.options.slidesToScroll))
-                .addClass('slick-active')
-                .attr('aria-hidden', 'false');
+                .addClass('slick-active').attr('aria-selected', 'true');
+            // .attr('aria-hidden', 'false');
 
         }
 
