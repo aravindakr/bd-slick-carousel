@@ -1,4 +1,4 @@
-/*
+/** @preserve
      _ _      _       _
  ___| (_) ___| | __  (_)___
 / __| | |/ __| |/ /  | / __|
@@ -6,7 +6,7 @@
 |___/_|_|\___|_|\_(_)/ |___/
                    |__/
 
- Version: 1.8.5
+ Version: 1.8.6
   Author: Ken Wheeler
  Website: http://kenwheeler.github.io
     Docs: http://kenwheeler.github.io/slick
@@ -1279,10 +1279,10 @@
 
         _.$slideTrack.attr('role', 'listbox');
 
-        _.$slides.not(_.$slideTrack.find('.slick-cloned')).each(function(i) {
+        _.$slideTrack.find('.slick-active').each(function() {
             $(this).attr({
                 'role': 'option',
-                'aria-describedby': 'slick-slide' + _.instanceUid + i + ''
+                'aria-describedby': 'slick-current-facet' + _.instanceUid + ''
             });
         });
 
@@ -1290,14 +1290,19 @@
             _.$dots.attr('role', 'tablist').find('li').each(function(i) {
                 $(this).attr({
                     'role': 'presentation',
-                    // 'aria-selected': 'false',
                     'aria-controls': 'navigation' + _.instanceUid + i + '',
-                    'id': 'slick-slide' + _.instanceUid + i + ''
+                    'id': ''
                 });
+
             })
-                // .first().attr('aria-selected', 'true').end()
                 .find('button').attr('role', 'button').end()
                 .closest('div').attr('role', 'toolbar');
+
+            _.$dots.find('li.slick-active').each(function () {
+                $(this).attr({
+                    'id': 'slick-current-facet' + _.instanceUid + ''
+                });
+            })
         }
         _.activateADA();
 
@@ -2859,17 +2864,7 @@
         var _ = this;
 
         if ( _.options.autoplay ) {
-
-            if ( document[_.hidden] ) {
-
-                _.interrupted = true;
-
-            } else {
-
-                _.interrupted = false;
-
-            }
-
+            _.interrupted = !!document[_.hidden];
         }
 
     };
