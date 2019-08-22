@@ -9,7 +9,8 @@
         "touch",
         "mobile"
     ],
-    "version": "1.9.1",
+    "version": "1.8.6",
+
     "author": {
         "name": "Ken Wheeler",
         "url": "http://kenwheeler.github.io"
