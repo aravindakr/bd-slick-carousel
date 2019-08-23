@@ -6,7 +6,7 @@
 |___/_|_|\___|_|\_(_)/ |___/
                    |__/
 
- Version: 1.8.6
+ Version: 1.8.7
   Author: Ken Wheeler
  Website: http://kenwheeler.github.io
     Docs: http://kenwheeler.github.io/slick
@@ -1290,10 +1290,10 @@
             _.$dots.attr('role', 'tablist').find('li').each(function(i) {
                 $(this).attr({
                     'role': 'presentation',
-                    'aria-controls': 'navigation' + _.instanceUid + i + '',
-                    'id': ''
+                    'aria-controls': 'navigation' + _.instanceUid + i + ''
                 });
 
+                $(this).removeAttr('id');
             })
                 .find('button').attr('role', 'button').end()
                 .closest('div').attr('role', 'toolbar');
@@ -2844,9 +2844,13 @@
 
         if (_.$dots !== null) {
 
+            _.$slideTrack.find('.slick-slide').each(function () {
+                $(this).removeAttr('aria-describedby');
+            });
+
             _.$dots
                 .find('li')
-                .removeClass('slick-active').attr('aria-selected','false')
+                .removeClass('slick-active').attr('aria-selected','false');
             // .attr('aria-hidden', 'true');
 
             _.$dots
